@@ -60,6 +60,15 @@ pipeline {
             }
         }
 
+        stage('Approval') {
+            when {
+                expression { params.DEPLOY_ENV == 'prod' }
+            }
+            steps {
+                input message: "Approve Docker build?", ok: "Yes, Build!"
+            }
+        }
+
         stage('Docker Build') {
             steps {
                 sh '''
