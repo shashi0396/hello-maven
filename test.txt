@@ -1,0 +1,16 @@
+# frontend systems
+# angular, react , flutter , vue-js
+
+# backend systems
+# java , python , .NET , php 
+
+# knw- which are compiled languages & dynamically typed 
+
+# dynamically typed - dont require compilers , we can execute the program from a executable programming file , 
+for eg , main.py , app.py
+
+# statically typed or compiled - we may need compilers for eg maven , it compile the code & create a artifact abdul.jar , 
+execute this artifact , then all ur program starts running 
+# java , c , c++ , go , rust  - compiled languages
+
+
