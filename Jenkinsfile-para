@@ -1,6 +1,14 @@
 pipeline {
     agent any
 
+    parameters {
+        string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Branch to build')
+        string(name: 'APP_NAME', defaultValue: 'hello-maven', description: 'Application name')
+        string(name: 'DOCKER_IMAGE', defaultValue: 'hello-maven-app', description: 'Docker image name')
+        choice(name: 'DEPLOY_ENV', choices: ['dev', 'staging', 'prod'], description: 'Deployment environment')
+        booleanParam(name: 'RUN_TESTS', defaultValue: true, description: 'Run tests during build')
+    }
+
     tools {
         maven 'Maven-3.9'
         jdk 'JDK-17'
@@ -8,7 +16,8 @@ pipeline {
 
     environment {
         APP_NAME = "hello-maven"
-        DOCKER_IMAGE = "hello-maven-app"
+        // DOCKER_IMAGE = "hello-maven-app"
+        DOCKER_IMAGE = "${params.DOCKER_IMAGE}"
         DOCKER_TAG = "${BUILD_NUMBER}"
     }
 
@@ -28,7 +37,7 @@ pipeline {
 
         stage('Test') {
             when {
-                branch 'main'
+                expression { params.RUN_TESTS }
             }
             steps {
                 sh 'mvn test'
