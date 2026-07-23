@@ -7,17 +7,17 @@ What is Maven?
 
 Maven is a build automation and dependency management tool for Java projects.
 
-👉 In simple words:
+In simple words:
 Maven helps you build your application and manage libraries automatically.
 
-🤔 Why Do We Need Maven?
+Why Do We Need Maven?
 
 Before Maven, developers faced problems like:
 
-❌ Without Maven
+Without Maven
 Manually downloading .jar files
 Managing dependencies by hand
-Version conflicts (library hell 😅)
+Version conflicts (library hell)
 Different builds on different machines
 Complex compile commands
 
