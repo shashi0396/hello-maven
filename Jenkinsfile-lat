@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven'
-        jdk 'JDK'
+        maven 'Maven-3.9'
+        jdk 'JDK-17'
     }
 
     environment {
@@ -52,7 +52,7 @@ pipeline {
             steps {
                 sh '''
                   docker build -t ${DOCKER_IMAGE}:${DOCKER_TAG} .
-                  docker tag ${DOCKER_IMAGE}:${DOCKER_TAG} ${DOCKER_IMAGE}:latest
+                  docker images
                 '''
             }
         }
