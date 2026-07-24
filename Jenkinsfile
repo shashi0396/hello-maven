@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+        label 'Drdoom' 
+    }
 
     tools {
         maven 'Maven-3.9'
