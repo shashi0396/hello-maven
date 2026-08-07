@@ -1,0 +1,44 @@
+---
+- name: install nginx
+  hosts: all
+  become: yes
+  gather_facts: false
+
+  tasks:
+    - name: update apt repos
+      shell: apt update
+
+    - name: install nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: status check
+      shell: systemctl status nginx
+      register: nginx_status
+      failed_when: false
+
+    - name: Print nginx status
+      debug:
+        var: nginx_status.stdout
+
+    #- name: stop nginx
+    #  shell: systemctl stop nginx
+    #  register: nginx_stop
+
+    #- name: print stop nginx
+     # debug:
+     #   var: nginx_stop.stdout
+
+    - name: Gather service facts
+      service_facts:
+
+    - name: Start nginx if stopped
+      service:
+        name: nginx
+        state: started
+      when: ansible_facts.services['nginx.service'].state != "running"
+
+  handlers:
+    - name: restart nginx
+      shell: systemctl restart nginx
